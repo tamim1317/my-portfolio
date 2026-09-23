@@ -28,7 +28,7 @@ export const siteConfig = {
    * Shown in footer, contact page, resume, and JSON-LD.
    * Example: tamim@example.com
    */
-  email: "[PLACEHOLDER: your@email.com]",
+  email: "mdtamimhossain1357@gmail.com",
 
   /** Canonical site URL — set via NEXT_PUBLIC_SITE_URL in production. */
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://localhost:3000",
@@ -38,7 +38,7 @@ export const siteConfig = {
      * Full GitHub profile URL.
      * Example: https://github.com/yourusername
      */
-    github: "[PLACEHOLDER: https://github.com/username]",
+    github: "https://github.com/tamim1317",
 
     /**
      * Full LinkedIn profile URL.
