@@ -54,15 +54,15 @@ export default function ContactPage() {
 
         <div className="section-padding-sm">
           <Container width="default">
-            <div className="grid grid-cols-1 gap-12 lg:grid-cols-[1fr_20rem]">
+            <div className="grid grid-cols-1 gap-14 lg:grid-cols-[1fr_19rem] lg:gap-16">
 
               {/* ── Contact form ── */}
-              <div className="flex flex-col gap-6">
+              <div className="flex flex-col gap-7">
                 <div>
-                  <h2 className="text-lg font-semibold text-foreground">
+                  <h2 className="text-lg font-semibold tracking-tight text-foreground">
                     Send a message
                   </h2>
-                  <p className="text-sm text-muted-foreground mt-1">
+                  <p className="mt-1.5 text-[14px] text-muted-foreground">
                     Fill in the form and I&apos;ll get back to you.
                     All fields marked * are required.
                   </p>
@@ -70,66 +70,77 @@ export default function ContactPage() {
                 <ContactForm />
               </div>
 
-              {/* ── Contact info sidebar ── */}
-              <aside className="flex flex-col gap-8">
+              {/* ── Sidebar ── */}
+              <aside className="flex flex-col gap-6">
+                {/* Contact methods */}
                 <div className="flex flex-col gap-4">
-                  <h2 className="text-sm font-semibold uppercase tracking-widest text-muted-foreground">
+                  <h2 className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
                     Other ways to reach me
                   </h2>
-                  <div className="flex flex-col gap-3">
-                    {contactDetails.map(({ label, value, href, icon: Icon, external }) => {
-                      const isPlaceholder = value.includes("[PLACEHOLDER");
-                      if (isPlaceholder) return null;
-                      return (
-                        <a
-                          key={label}
-                          href={href}
-                          target={external ? "_blank" : undefined}
-                          rel={external ? "noopener noreferrer" : undefined}
-                          aria-label={external ? `${label} (opens in new tab)` : label}
-                          className={cn(
-                            "flex items-center gap-3",
-                            "rounded-lg border border-border bg-card p-3",
-                            "hover:border-primary/20 hover:bg-accent/50",
-                            "transition-colors duration-[150ms]",
-                            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                          )}
-                        >
-                          <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                            <Icon size={15} aria-hidden="true" />
-                          </span>
-                          <div className="flex flex-col gap-0.5 min-w-0">
-                            <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
-                              {label}
-                            </p>
-                            <p className="text-sm text-foreground truncate">
-                              {value}
-                            </p>
-                          </div>
-                        </a>
-                      );
-                    })}
+
+                  <div className="flex flex-col gap-2.5">
+                    {contactDetails.map(
+                      ({ label, value, href, icon: Icon, external }) => {
+                        const isPlaceholder = value.includes("[PLACEHOLDER");
+                        if (isPlaceholder) return null;
+
+                        return (
+                          <a
+                            key={label}
+                            href={href}
+                            target={external ? "_blank" : undefined}
+                            rel={external ? "noopener noreferrer" : undefined}
+                            aria-label={
+                              external ? `${label} (opens in new tab)` : label
+                            }
+                            className={cn(
+                              "group flex items-center gap-3.5",
+                              "rounded-xl border border-border/70 bg-card/80 p-3.5",
+                              "hover:border-primary/30 hover:bg-accent/40",
+                              "transition-all duration-200",
+                              "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                            )}
+                          >
+                            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary transition-all duration-200 group-hover:bg-primary group-hover:text-primary-foreground">
+                              <Icon size={15} aria-hidden="true" />
+                            </span>
+                            <div className="flex min-w-0 flex-col gap-0.5">
+                              <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-muted-foreground">
+                                {label}
+                              </p>
+                              <p className="truncate text-[13px] font-medium text-foreground">
+                                {value}
+                              </p>
+                            </div>
+                          </a>
+                        );
+                      }
+                    )}
                   </div>
                 </div>
 
-                <div className="flex flex-col gap-3 rounded-xl border border-border bg-card p-5">
+                {/* Location card */}
+                <div className="flex flex-col gap-3 rounded-2xl border border-border/70 bg-card/80 p-5">
                   <div className="flex items-center gap-2">
                     <MapPin size={14} className="text-primary" aria-hidden="true" />
-                    <span className="text-sm font-semibold text-foreground">Location</span>
+                    <span className="text-[13px] font-semibold text-foreground">
+                      Location
+                    </span>
                   </div>
-                  <p className="text-sm text-muted-foreground">
+                  <p className="text-[13px] text-muted-foreground">
                     {siteConfig.location}
                   </p>
-                  <p className="text-sm text-muted-foreground">
+                  <p className="text-[13px] text-muted-foreground">
                     {siteConfig.locationNote}
                   </p>
                 </div>
 
-                <div className="rounded-xl border border-primary/20 bg-primary/5 p-5 flex flex-col gap-2">
-                  <p className="text-sm font-medium text-foreground">
+                {/* Availability note */}
+                <div className="flex flex-col gap-2 rounded-2xl border border-primary/20 bg-primary/[0.04] p-5">
+                  <p className="text-[13px] font-medium text-foreground">
                     {siteConfig.availabilityNote}
                   </p>
-                  <p className="text-xs text-muted-foreground">
+                  <p className="text-[12px] text-muted-foreground">
                     {siteConfig.responseTime}
                   </p>
                 </div>

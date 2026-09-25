@@ -8,7 +8,11 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
-import { contactSchema, type ContactFormData, type ContactFormState } from "@/lib/validations/contact";
+import {
+  contactSchema,
+  type ContactFormData,
+  type ContactFormState,
+} from "@/lib/validations/contact";
 import { sendContactMessage } from "@/lib/actions/contact";
 
 const initialState: ContactFormState = { status: "idle" };
@@ -52,19 +56,23 @@ export function ContactForm() {
         role="alert"
         tabIndex={-1}
         className={cn(
-          "flex flex-col items-center gap-4 rounded-xl",
-          "border border-emerald-500/20 bg-emerald-500/5 p-8 text-center",
+          "flex flex-col items-center gap-4 rounded-2xl",
+          "border border-emerald-500/20 bg-emerald-500/5 p-10 text-center",
           "focus-visible:outline-none"
         )}
       >
-        <CheckCircle2
-          size={32}
-          className="text-emerald-600 dark:text-emerald-400"
-          aria-hidden="true"
-        />
-        <div className="flex flex-col gap-1">
-          <p className="font-semibold text-foreground">Message sent!</p>
-          <p className="text-sm text-muted-foreground">
+        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-emerald-500/10">
+          <CheckCircle2
+            size={24}
+            className="text-emerald-600 dark:text-emerald-400"
+            aria-hidden="true"
+          />
+        </div>
+        <div className="flex flex-col gap-1.5">
+          <p className="text-base font-semibold text-foreground">
+            Message sent!
+          </p>
+          <p className="text-[14px] text-muted-foreground max-w-sm">
             Thank you for reaching out. I&apos;ll get back to you as soon as
             possible.
           </p>
@@ -75,7 +83,7 @@ export function ContactForm() {
 
   return (
     <form action={formAction} noValidate className="flex flex-col gap-5">
-      {/* ── Honeypot — visually hidden, not aria-hidden ── */}
+      {/* ── Honeypot ── */}
       <div
         style={{
           position: "absolute",
@@ -100,14 +108,14 @@ export function ContactForm() {
       {state.status === "error" && !state.fieldErrors && (
         <div
           role="alert"
-          className="flex items-start gap-3 rounded-lg border border-destructive/20 bg-destructive/5 p-4"
+          className="flex items-start gap-3 rounded-xl border border-destructive/20 bg-destructive/5 p-4"
         >
           <AlertCircle
             size={16}
-            className="text-destructive shrink-0 mt-0.5"
+            className="mt-0.5 shrink-0 text-destructive"
             aria-hidden="true"
           />
-          <p className="text-sm text-destructive">{state.message}</p>
+          <p className="text-[13px] text-destructive">{state.message}</p>
         </div>
       )}
 
@@ -125,7 +133,9 @@ export function ContactForm() {
           aria-required="true"
           error={
             errors.name?.message ??
-            (state.status === "error" ? state.fieldErrors?.name?.[0] : undefined)
+            (state.status === "error"
+              ? state.fieldErrors?.name?.[0]
+              : undefined)
           }
           {...register("name")}
         />
@@ -145,7 +155,9 @@ export function ContactForm() {
           aria-required="true"
           error={
             errors.email?.message ??
-            (state.status === "error" ? state.fieldErrors?.email?.[0] : undefined)
+            (state.status === "error"
+              ? state.fieldErrors?.email?.[0]
+              : undefined)
           }
           {...register("email")}
         />
@@ -164,7 +176,9 @@ export function ContactForm() {
           aria-required="true"
           error={
             errors.subject?.message ??
-            (state.status === "error" ? state.fieldErrors?.subject?.[0] : undefined)
+            (state.status === "error"
+              ? state.fieldErrors?.subject?.[0]
+              : undefined)
           }
           {...register("subject")}
         />
@@ -178,12 +192,14 @@ export function ContactForm() {
         <Textarea
           id="contact-message"
           placeholder="Tell me about your project, opportunity, or question..."
-          className="min-h-[140px]"
+          className="min-h-[150px]"
           required
           aria-required="true"
           error={
             errors.message?.message ??
-            (state.status === "error" ? state.fieldErrors?.message?.[0] : undefined)
+            (state.status === "error"
+              ? state.fieldErrors?.message?.[0]
+              : undefined)
           }
           {...register("message")}
         />
@@ -195,14 +211,14 @@ export function ContactForm() {
         disabled={isPending}
         aria-busy={isPending}
         className={cn(
-          "inline-flex items-center justify-center gap-2",
-          "h-11 px-6 rounded-lg text-sm font-medium",
+          "inline-flex items-center justify-center gap-2 self-start",
+          "h-11 px-6 rounded-full text-[13px] font-semibold",
           "bg-primary text-primary-foreground",
-          "hover:bg-primary/90",
-          "transition-colors duration-[150ms]",
+          "shadow-sm hover:shadow-md",
+          "hover:bg-primary/90 hover:-translate-y-[1px]",
+          "transition-all duration-200 ease-out",
           "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
-          "disabled:pointer-events-none disabled:opacity-50",
-          "self-start"
+          "disabled:pointer-events-none disabled:opacity-50"
         )}
       >
         {isPending && (
@@ -211,9 +227,9 @@ export function ContactForm() {
         {isPending ? "Sending..." : "Send message"}
       </button>
 
-      {/* ── Validation summary (for general errors with field info) ── */}
+      {/* ── Validation summary ── */}
       {state.status === "error" && state.message && state.fieldErrors && (
-        <p role="alert" className="text-sm text-destructive">
+        <p role="alert" className="text-[13px] text-destructive">
           {state.message}
         </p>
       )}

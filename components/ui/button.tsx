@@ -10,7 +10,7 @@ const buttonVariants = cva(
   [
     "inline-flex items-center justify-center gap-2",
     "font-medium text-sm leading-none",
-    "rounded-lg",
+    "rounded-xl",
     "border border-transparent",
     "cursor-pointer select-none",
     "whitespace-nowrap",

@@ -33,7 +33,8 @@ export function SectionHeading({
       )}
     >
       {label && (
-        <span className="text-eyebrow text-primary" aria-hidden="true">
+        <span className="inline-flex items-center gap-2.5 text-eyebrow text-primary" aria-hidden="true">
+          <span className="h-px w-6 bg-primary/50" />
           {label}
         </span>
       )}

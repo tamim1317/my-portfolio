@@ -22,43 +22,62 @@ export function ProjectsSection() {
       background="muted"
     >
       <Container>
-        <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <SectionHeading
             id="projects-heading"
             label="Work"
             title="Featured projects"
             description="Selected work demonstrating full stack development across different problem domains."
           />
+
           <Link
             href="/projects"
             className={cn(
-              "inline-flex items-center gap-1.5 shrink-0",
-              "text-sm font-medium text-primary hover:text-primary/80",
-              "transition-colors duration-[150ms]",
+              "group inline-flex items-center gap-1.5 shrink-0",
+              "text-sm font-medium text-primary",
+              "hover:gap-2.5 transition-all duration-300 ease-out",
               "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:rounded-sm",
-              "pb-1 self-end"
+              "self-start sm:self-end pb-1"
             )}
           >
             All projects
-            <ArrowRight size={14} aria-hidden="true" />
+            <ArrowRight
+              size={15}
+              aria-hidden="true"
+              className="transition-transform duration-300 group-hover:translate-x-0.5"
+            />
           </Link>
         </div>
 
         {featured.length > 0 ? (
           <div
-            className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3"
+            className="mt-12 grid grid-cols-1 gap-6 lg:grid-cols-3"
             role="list"
             aria-label="Featured projects"
           >
-            {featured.map((project) => (
-              <div key={project.slug} role="listitem">
-                <ProjectCard project={project} className="h-full" />
+            {featured.map((project, index) => (
+              <div
+                key={project.slug}
+                role="listitem"
+                className={cn(
+                  index === 0 ? "lg:col-span-3" : "lg:col-span-1",
+                  "animate-[fade-in-up_0.5s_ease-out_both]",
+                  index === 0 && "delay-0",
+                  index === 1 && "delay-100",
+                  index === 2 && "delay-200"
+                )}
+              >
+                <ProjectCard
+                  project={project}
+                  variant={index === 0 ? "featured" : "default"}
+                  className="h-full"
+                />
               </div>
             ))}
           </div>
         ) : (
-          <div className="mt-10 rounded-xl border border-dashed border-border p-12 text-center">
-            <p className="text-muted-foreground text-sm">
+          <div className="mt-12 rounded-2xl border border-dashed border-border/70 bg-card/40 p-16 text-center">
+            <p className="text-sm text-muted-foreground">
               Projects coming soon.
             </p>
           </div>
