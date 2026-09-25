@@ -1,20 +1,4 @@
-/**
- * lib/site.ts — Site-wide configuration and content.
- *
- * ╔══════════════════════════════════════════════════════════════════╗
- * ║  SINGLE SOURCE OF TRUTH for all personal information.           ║
- * ║  Every page and component reads from this file.                 ║
- * ║  To update personal info, change it HERE — nowhere else.        ║
- * ╚══════════════════════════════════════════════════════════════════╝
- *
- * Replace every [PLACEHOLDER: ...] value with real information.
- * TypeScript surfaces missing or mistyped fields at build time.
- */
-
-/* ══════════════════════════════════════════════════════════════════════
-   SITE CONFIGURATION
-   ══════════════════════════════════════════════════════════════════════ */
-export const siteConfig = {
+  export const siteConfig = {
   /* ── Identity ─────────────────────────────────────────────────── */
   name:       "Md Tamim Hossain",
   shortName:  "Tamim",
@@ -23,35 +7,15 @@ export const siteConfig = {
   locationNote: "Open to remote opportunities worldwide",
 
   /* ── Contact & social ─────────────────────────────────────────── */
-  /**
-   * Primary contact email.
-   * Shown in footer, contact page, resume, and JSON-LD.
-   * Example: tamim@example.com
-   */
   email: "mdtamimhossain1357@gmail.com",
 
   /** Canonical site URL — set via NEXT_PUBLIC_SITE_URL in production. */
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://localhost:3000",
+  url: "https://my-portfolio-nu-ten-k2cirfqqtq.vercel.app",
 
   social: {
-    /**
-     * Full GitHub profile URL.
-     * Example: https://github.com/yourusername
-     */
     github: "https://github.com/tamim1317",
-
-    /**
-     * Full LinkedIn profile URL.
-     * Example: https://linkedin.com/in/yourprofile
-     */
-    linkedin: "[PLACEHOLDER: https://linkedin.com/in/username]",
-
-    /**
-     * Full Twitter/X profile URL.
-     * Leave as empty string "" to hide everywhere.
-     * Example: https://twitter.com/yourhandle
-     */
-    twitter: "",
+    linkedin: "",
+    twitter: "https://x.com/MDTamim06056345",
   },
 
   /* ── Availability ─────────────────────────────────────────────── */

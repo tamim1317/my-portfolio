@@ -61,6 +61,9 @@ export default function ResumePage() {
     (g) => g.title !== "Currently Learning"
   );
 
+  const hasExperience = experience.length > 0;
+  const hasCertifications = certifications.length > 0;
+
   return (
     <>
       {/* Header hidden on print */}
@@ -92,8 +95,8 @@ export default function ResumePage() {
                 Download PDF
               </a>
             ) : (
-              <span className="shrink-0 text-[12px] italic text-muted-foreground">
-                PDF coming soon
+              <span className="shrink-0 text-[12px] text-muted-foreground">
+                PDF version available soon
               </span>
             )}
           </div>
@@ -162,6 +165,8 @@ export default function ResumePage() {
 
               <a
                 href={siteConfig.url}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="flex items-center gap-1.5 transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:rounded-sm"
               >
                 <ExternalLink size={13} aria-hidden="true" />
@@ -256,8 +261,15 @@ export default function ResumePage() {
                     </article>
                   ))
                 ) : (
-                  <p className="text-[13px] italic text-muted-foreground">
-                    [PLACEHOLDER: Add your projects to lib/projects.ts]
+                  <p className="text-[13px] text-muted-foreground">
+                    Projects available on the{" "}
+                    <Link
+                      href="/projects"
+                      className="text-primary hover:underline"
+                    >
+                      Projects page
+                    </Link>
+                    .
                   </p>
                 )}
 
@@ -309,9 +321,9 @@ export default function ResumePage() {
               </div>
             </ResumeSection>
 
-            {/* ── Experience ── */}
-            <ResumeSection title="Experience" id="experience">
-              {experience.length > 0 ? (
+            {/* ── Experience (only if data exists) ── */}
+            {hasExperience && (
+              <ResumeSection title="Experience" id="experience">
                 <div className="flex flex-col gap-6">
                   {experience.map((entry, i) => (
                     <article key={i} className="flex flex-col gap-2">
@@ -363,22 +375,15 @@ export default function ResumePage() {
                     </article>
                   ))}
                 </div>
-              ) : (
-                <p className="text-[13px] italic text-muted-foreground">
-                  [PLACEHOLDER: Add employment history to the{" "}
-                  <code className="text-[12px]">experience</code> array in{" "}
-                  <code className="text-[12px]">lib/site.ts</code>. Only add
-                  verified roles.]
-                </p>
-              )}
-            </ResumeSection>
+              </ResumeSection>
+            )}
 
-            {/* ── Certifications ── */}
-            <ResumeSection
-              title="Certifications & Achievements"
-              id="certifications"
-            >
-              {certifications.length > 0 ? (
+            {/* ── Certifications (only if data exists) ── */}
+            {hasCertifications && (
+              <ResumeSection
+                title="Certifications & Achievements"
+                id="certifications"
+              >
                 <div className="flex flex-col gap-4">
                   {certifications.map((cert, i) => (
                     <article key={i} className="flex flex-col gap-0.5">
@@ -416,14 +421,8 @@ export default function ResumePage() {
                     </article>
                   ))}
                 </div>
-              ) : (
-                <p className="text-[13px] italic text-muted-foreground">
-                  [PLACEHOLDER: Add verified certifications to the{" "}
-                  <code className="text-[12px]">certifications</code> array in{" "}
-                  <code className="text-[12px]">lib/site.ts</code>.]
-                </p>
-              )}
-            </ResumeSection>
+              </ResumeSection>
+            )}
           </div>
         </div>
       </main>
